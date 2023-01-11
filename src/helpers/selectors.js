@@ -17,7 +17,7 @@ export function getAppointmentsForDay(state, day) {
   // get the appointments IDs for that day
   const appointmentIdsForDay = getDay[0].appointments;
 
-  // get  details for all appointments
+  // get details for all appointments
   const appointments = state.appointments;
 
   // get appointment details for the specific day if id matches
