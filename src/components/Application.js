@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DayList from "./DayList.js";
 import Appointment from "./Appointment/index.js";
 import axios from "axios";
-import { getAppointmentsForDay } from "helpers/selectors.js";
+import { getAppointmentsForDay, getInterview } from "helpers/selectors.js";
 
 import "components/Application.scss";
 
@@ -12,7 +12,8 @@ export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {}
+    appointments: {},
+    interviewers: {}
   });
 
   // update day in state
@@ -31,9 +32,10 @@ export default function Application(props) {
  
       const days = all[0].data
       const appointments = all[1].data
+      const interviewers = all[2].data
 
       // update state object with days and appointments from api
-      setState(prev => ({...prev, days, appointments}))
+      setState(prev => ({...prev, days, appointments, interviewers}))
     }).catch(err => console.log(err))
 
   }, []);
@@ -62,6 +64,7 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {dailyAppointments.map((appointment) => {
+          const interview = getInterview(state, appointment.interview);
           return (
             <Appointment key={appointment.id}  {...appointment} />
           );

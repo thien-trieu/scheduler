@@ -29,3 +29,26 @@ export function getAppointmentsForDay(state, day) {
 
   return result;
 }
+
+export function getInterview(state, interview) {
+  if (!interview) {
+    return null;
+  }
+
+  const interviewerId = interview.interviewer;
+  const interviewers = state.interviewers;
+  // loop through all the the interviewer to match id with interview ID
+  for (const id in interviewers) {
+    if (interviewerId === interviewers[id].id) {
+      // when match data is found create new object 
+      const interviewDetails = {
+        student: interview.student,
+        interviewer: interviewers[id]
+      };
+      // return the new object with student name and interviewer's data
+      return interviewDetails;
+    }
+  }
+
+}
+
