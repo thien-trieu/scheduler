@@ -29,9 +29,8 @@ export default function Appointment(props) {
           onEdit={()=>{}}
           onDelete={()=>{}}
         />
-      
       )}
-      {mode === CREATE && <Form interviewers={[]} onSave={()=>{}} onCancel={()=>{}}/>}
+      {mode === CREATE && <Form interviewers={[]} onSave={()=>{}} onCancel={()=>{back()}}/>}
     </article>
   );
 }
