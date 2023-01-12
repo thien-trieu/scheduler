@@ -22,6 +22,8 @@ export default function Application(props) {
   // get daily appointments for days from state object
   const dailyAppointments = getAppointmentsForDay(state, state.day)
 
+  // // get daily interviewers for days from state object
+  const dailyInterviewers = getInterviewersForDay(state, state.day)
   // get all the data from API
   useEffect(() => {
     Promise.all([
@@ -69,7 +71,8 @@ export default function Application(props) {
             <Appointment key={appointment.id} 
             id={appointment.id}
             time={appointment.time}
-            interview={interview} />
+            interview={interview}
+            interviewers={dailyInterviewers} />
           );
         })}
         <Appointment key="last" time="5pm" />
