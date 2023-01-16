@@ -50,27 +50,53 @@ export default function Application(props) {
     // from form component onSave, get sppointment id + interview object { student: name, interviewer: id}
 
     // update the database for this appointment id
-    return axios.put(`/api/appointments/${id}`, { interview }).then((response) => {
-      
-      console.log("Response Status: ", response.status);
+    return axios
+      .put(`/api/appointments/${id}`, { interview })
+      .then((response) => {
+        console.log("Response Status: ", response.status);
+      })
+      .then(() => {
+        // create new appointment object with interview details
+        const appointment = {
+          ...state.appointments[id],
+          interview: { ...interview },
+        };
 
-      // create new appointment object with interview details
-      const appointment = {
-        ...state.appointments[id],
-        interview: { ...interview },
-      };
+        // create new appointments object with appointment details
+        const appointments = {
+          ...state.appointments,
+          [id]: appointment,
+        };
 
-      // create new appointments object with appointment details
-      const appointments = {
-        ...state.appointments,
-        [id]: appointment,
-      };
+        // set the state with new appointments object
+        setState({ ...state, appointments });
+      });
+  };
 
-      // set the state with new appointments object
-      setState({ ...state, appointments });
-    });
+  const cancelInterview = (id, interview) => {
+    console.log('Deleting interview appointment....')
 
-    
+    return axios
+      .delete(`/api/appointments/${id}`, { interview })
+      .then((response) => {
+        console.log("Response Status: ", response.status);
+      })
+      .then(() => {
+        // create appointment object with interview null
+        const appointment = {
+          ...state.appointments[id],
+          interview: interview ,
+        };
+        // create appointments object with appointment details
+        const appointments = {
+          ...state.appointments,
+          [id]: appointment,
+        };
+        // set the state with appointments object
+        setState({ ...state, appointments });
+        console.log('Delete Appointment Completed')
+      })
+      .catch(err => console.log(err));
   };
 
   // passingg all props/data for each appointment to the the component
@@ -84,6 +110,7 @@ export default function Application(props) {
         interview={interview}
         interviewers={dailyInterviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
