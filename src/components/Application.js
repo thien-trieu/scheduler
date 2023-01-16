@@ -47,29 +47,30 @@ export default function Application(props) {
   const dailyInterviewers = getInterviewersForDay(state, state.day);
 
   const bookInterview = (id, interview) => {
-    // from FORM onSave, get sppointment id + interview object { student: name, interviewer: id}
-
-    // create new appointment object with interview details
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview },
-    };
-
-    // create new appointments object with appointment details
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment,
-    };
+    // from form component onSave, get sppointment id + interview object { student: name, interviewer: id}
 
     // update the database for this appointment id
-    axios.put(`/api/appointments/${id}`, {interview})
-    .then((response) => {
-      console.log('Response Status: ', response.status)
+    return axios.put(`/api/appointments/${id}`, { interview }).then((response) => {
+      
+      console.log("Response Status: ", response.status);
+
+      // create new appointment object with interview details
+      const appointment = {
+        ...state.appointments[id],
+        interview: { ...interview },
+      };
+
+      // create new appointments object with appointment details
+      const appointments = {
+        ...state.appointments,
+        [id]: appointment,
+      };
+
+      // set the state with new appointments object
+      setState({ ...state, appointments });
     });
 
-    // set the statement with new appointments object
-    setState({ ...state, appointments })
-   
+    
   };
 
   // passingg all props/data for each appointment to the the component
