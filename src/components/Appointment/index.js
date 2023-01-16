@@ -58,9 +58,9 @@ export default function Appointment(props) {
     // Deleting status will appear while appointment gets deleted and state gets updated
     transition(DELETING, true)
     const id = props.id
-    const interview = null
+    
     // Delete request sent to Appointment API
-    props.cancelInterview(id, interview)
+    props.cancelInterview(id)
     .then(()=> transition(EMPTY)) // After delete is complete, appointment will be EMPTY
     .catch(() => transition(ERROR_DELETE, true))
   }
