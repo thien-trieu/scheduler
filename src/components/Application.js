@@ -96,7 +96,7 @@ export default function Application(props) {
         setState({ ...state, appointments });
         console.log('Delete Appointment Completed')
       })
-      .catch(err => console.log(err));
+   
   };
 
   // passingg all props/data for each appointment to the the component
