@@ -27,12 +27,10 @@ export default function Appointment(props) {
       interviewer
     };
 
-    console.log('New Interview ---> ', interview)
     props.bookInterview(id, interview)
     // After booking interview, it will transition to SHOW mode
     transition(SHOW)
 
-    console.log(id, interview)
   }
 
   return (

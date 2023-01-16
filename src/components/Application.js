@@ -2,39 +2,42 @@ import React, { useState, useEffect } from "react";
 import DayList from "./DayList.js";
 import Appointment from "./Appointment/index.js";
 import axios from "axios";
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors.js";
+import {
+  getAppointmentsForDay,
+  getInterview,
+  getInterviewersForDay,
+} from "helpers/selectors.js";
 
 import "components/Application.scss";
 
 export default function Application(props) {
-
   // storing all states in one object.
   const [state, setState] = useState({
     day: "Monday",
     days: [],
     appointments: {},
-    interviewers: {}
+    interviewers: {},
   });
-  console.log('Old State Appointment ', state.appointments)
+
   // update day in state
-  const setDay = day => setState({ ...state, day });
+  const setDay = (day) => setState({ ...state, day });
 
   // get all the data from API
   useEffect(() => {
     Promise.all([
-      axios.get('http://localhost:8001/api/days'),
-      axios.get('http://localhost:8001/api/appointments'),
-      axios.get('http://localhost:8001/api/interviewers')
-    ]).then((all) => {
+      axios.get("http://localhost:8001/api/days"),
+      axios.get("http://localhost:8001/api/appointments"),
+      axios.get("http://localhost:8001/api/interviewers"),
+    ])
+      .then((all) => {
+        const days = all[0].data;
+        const appointments = all[1].data;
+        const interviewers = all[2].data;
 
-      const days = all[0].data;
-      const appointments = all[1].data;
-      const interviewers = all[2].data;
-
-      // update state object with days and appointments from api
-      setState(prev => ({ ...prev, days, appointments, interviewers }));
-    }).catch(err => console.log(err));
-
+        // update state object with days and appointments from api
+        setState((prev) => ({ ...prev, days, appointments, interviewers }));
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   // get daily appointments for day from state object
@@ -45,40 +48,44 @@ export default function Application(props) {
 
   const bookInterview = (id, interview) => {
     // from FORM onSave, get sppointment id + interview object { student: name, interviewer: id}
-    
+
     // create new appointment object with interview details
     const appointment = {
       ...state.appointments[id],
-      interview: { ...interview }
-    }; 
-    console.log('bookInterview New appointment --->', appointment)
+      interview: { ...interview },
+    };
+
     // create new appointments object with appointment details
     const appointments = {
       ...state.appointments,
-      [id]: appointment
+      [id]: appointment,
     };
 
-    console.log('bookInterview New appointments --->', appointments)
-    // set the statement with new appointments object
-    setState({...state, appointments})
+    // update the database for this appointment id
+    axios.put(`/api/appointments/${id}`, {interview})
+    .then((response) => {
+      console.log('Response Status: ', response.status)
+    });
 
-  }
-   console.log('New State Appointment ', state.appointments)
+    // set the statement with new appointments object
+    setState({ ...state, appointments })
+   
+  };
 
   // passingg all props/data for each appointment to the the component
   const appointmentComponent = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
     return (
-      <Appointment key={appointment.id}
+      <Appointment
+        key={appointment.id}
         id={appointment.id}
         time={appointment.time}
         interview={interview}
-        interviewers={dailyInterviewers} 
-        bookInterview={bookInterview}/>
+        interviewers={dailyInterviewers}
+        bookInterview={bookInterview}
+      />
     );
   });
-
-
 
   return (
     <main className="layout">
@@ -90,11 +97,7 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList
-            days={state.days}
-            value={state.day}
-            onChange={setDay}
-          />
+          <DayList days={state.days} value={state.day} onChange={setDay} />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
@@ -104,7 +107,7 @@ export default function Application(props) {
       </section>
       <section className="schedule">
         {appointmentComponent}
-        <Appointment key="last" time="5pm" bookInterview={bookInterview}/>
+        <Appointment key="last" time="5pm" bookInterview={bookInterview} />
       </section>
     </main>
   );
