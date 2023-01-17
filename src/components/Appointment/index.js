@@ -42,7 +42,6 @@ export default function Appointment(props) {
     // Pass the interview data to bookInterview to update appointment API
     props.bookInterview(id, interview)
     .then(() => transition(SHOW)) // After bookInterview PUT request completes, it will transition to SHOW mode
-    .then(() => console.log('Completed'))
     .catch(()=> transition(ERROR_SAVE, true)) 
 
   }
