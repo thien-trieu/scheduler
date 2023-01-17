@@ -21,7 +21,6 @@ export default function Application(props) {
   // get daily interviewers for day from state object
   const dailyInterviewers = getInterviewersForDay(state, state.day);
 
-  console.log('STATE...', state)
   // passingg all props/data for each appointment to the the component
   const appointmentComponent = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
