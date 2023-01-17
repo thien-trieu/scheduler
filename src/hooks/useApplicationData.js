@@ -33,24 +33,21 @@ const useApplicationData = () => {
 
   const updateSpots = (state, add = false) => {
     // get the day you want to update
-    const updatedDay = state.days.filter((d) => d.name === state.day)[0];
+    const dayObj = state.days.find((d) => d.name === state.day);
+    // we need to calculate spots better here
+    const spots = add ? dayObj.spots + 1 : dayObj.spots - 1
 
-    if (add) {
-      // add spot if an interview is being cancelled
-      updatedDay.spots++;
-    } else {
-      // remove a spot if an interview is being booked
-      updatedDay.spots--;
-    }
+    const countSpots = dayObj.appointments.forEach(id => {
+      if (id === state.appointments[id].id){
+        console.log(state.appointments[id].interview)
+      }
+    })
+
+  
+    const day = {...dayObj, spots}
 
     // create a new days Array and replace the day with updatedDay
-    const days = state.days.map((day) => {
-      if (day.name === state.day) {
-        return updatedDay;
-      } else {
-        return day;
-      }
-    });
+    const days = state.days.map(d =>  d.name === state.day ? day : d);
 
     return days;
   };
@@ -79,7 +76,8 @@ const useApplicationData = () => {
 
         // set the state with new appointments and days data
         setState({ ...state, appointments, days });
-      });
+      })
+  
   };
 
   const cancelInterview = (id) => {

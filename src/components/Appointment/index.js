@@ -32,10 +32,10 @@ export default function Appointment(props) {
     transition(SAVING)
     console.log('Saving....')
 
-    if (!name || !interviewer){
-      transition(ERROR_SAVE, true)
-      throw 400
-    }
+    // if (!name || !interviewer){
+    //   transition(ERROR_SAVE, true)
+    //   throw 400
+    // }
     // Form onSave will create a new interview object and call bookInterview
     const id = props.id
     const interview = {
