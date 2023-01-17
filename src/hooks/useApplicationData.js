@@ -31,26 +31,46 @@ const useApplicationData = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const updateSpots = (state, add = false) => {
-    // get the day you want to update
-    const dayObj = state.days.find((d) => d.name === state.day);
-    // we need to calculate spots better here
-    const spots = add ? dayObj.spots + 1 : dayObj.spots - 1
+  // const updateSpots = (state, add = false) => {
+  //   // get the day you want to update
+  //   const dayObj = state.days.find((d) => d.name === state.day);
+  //   // we need to calculate spots better here
+  //   const spots = add ? dayObj.spots + 1 : dayObj.spots - 1
 
-    const countSpots = dayObj.appointments.forEach(id => {
-      if (id === state.appointments[id].id){
-        console.log(state.appointments[id].interview)
-      }
-    })
+  //   const countSpots = dayObj.appointments.forEach(id => {
+  //     if (id === state.appointments[id].id){
+  //       console.log(state.appointments[id].interview)
+  //     }
+  //   })
 
   
-    const day = {...dayObj, spots}
+  //   const day = {...dayObj, spots}
 
-    // create a new days Array and replace the day with updatedDay
-    const days = state.days.map(d =>  d.name === state.day ? day : d);
+  //   // create a new days Array and replace the day with updatedDay
+  //   const days = state.days.map(d =>  d.name === state.day ? day : d);
 
-    return days;
-  };
+  //   return days;
+  // };
+
+  const updateSpots = (state, appointments) => {
+    // Get the day
+    const dayObj = state.days.find((d) => d.name === state.day);
+
+    // count the null appointments
+    let spots = 0
+    for (const id of dayObj.appointments){
+      const appointment = appointments[id] 
+        if (!appointment.interview){
+          spots ++
+        }
+      }
+    
+
+    const day = { ...dayObj, spots}
+    const days = state.days.map(d => d.name === state.day ? day : d)
+
+    return days
+  }
 
   const bookInterview = (id, interview) => {
     // from form component onSave, get sppointment id + interview object { student: name, interviewer: id}
@@ -72,7 +92,9 @@ const useApplicationData = () => {
         };
 
         // update state.days with updated number of spots left
-        const days = updateSpots(state);
+        // const days2= updateSpots(state);
+
+        const days = updateSpots(state, appointments);
 
         // set the state with new appointments and days data
         setState({ ...state, appointments, days });
@@ -97,7 +119,7 @@ const useApplicationData = () => {
       };
 
       // update state.days with updated number of spots left
-      const days = updateSpots(state, true);
+      const days = updateSpots(state, appointments);
 
       // set the state with new appointments and days data
       setState({ ...state, appointments, days });
