@@ -32,21 +32,24 @@ const useApplicationData = () => {
   }, []);
 
   const updateSpots = (state, add = false) => {
-    const updateDay = state.days.filter((d) => d.name === state.day)[0];
+    // get the day you want to update
+    const updatedDay = state.days.filter((d) => d.name === state.day)[0];
 
-    if (add){
-      updateDay.spots++
+    if (add) {
+      // add spot if an interview is being cancelled
+      updatedDay.spots++;
     } else {
-      updateDay.spots--;
+      // remove a spot if an interview is being booked
+      updatedDay.spots--;
     }
 
-    const days = [];
-    state.days.forEach((day) => {
-     if (day.name === state.day){
-      days.push(updateDay)
-     } else {
-       days.push(day)
-     }
+    // create a new days Array and replace the day with updatedDay
+    const days = state.days.map((day) => {
+      if (day.name === state.day) {
+        return updatedDay;
+      } else {
+        return day;
+      }
     });
 
     return days;
@@ -69,8 +72,8 @@ const useApplicationData = () => {
         const appointments = {
           ...state.appointments,
           [id]: appointment,
-          };
-        
+        };
+
         // update state.days with updated number of spots left
         const days = updateSpots(state);
 
@@ -82,29 +85,26 @@ const useApplicationData = () => {
   const cancelInterview = (id) => {
     console.log("Deleting interview appointment....");
 
-    return axios
-      .delete(`/api/appointments/${id}`)
-      .then((response) => {
-        console.log("Response Status: ", response.status);
-        // create appointment object with interview null
-        const appointment = {
-          ...state.appointments[id],
-          interview: null,
-        };
-        // create appointments object with appointment details
-        const appointments = {
-          ...state.appointments,
-          [id]: appointment,
-        };
+    return axios.delete(`/api/appointments/${id}`).then((response) => {
+      console.log("Response Status: ", response.status);
+      // create appointment object with interview null
+      const appointment = {
+        ...state.appointments[id],
+        interview: null,
+      };
+      // create appointments object with appointment details
+      const appointments = {
+        ...state.appointments,
+        [id]: appointment,
+      };
 
-         // update state.days with updated number of spots left
-        const days = updateSpots(state, true)
-        
-       // set the state with new appointments and days data
-        setState({ ...state, appointments, days });
-        console.log("Delete Appointment Completed");
-      })
+      // update state.days with updated number of spots left
+      const days = updateSpots(state, true);
 
+      // set the state with new appointments and days data
+      setState({ ...state, appointments, days });
+      console.log("Delete Appointment Completed");
+    });
   };
 
   return { state, setDay, bookInterview, cancelInterview };
