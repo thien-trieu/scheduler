@@ -31,27 +31,6 @@ const useApplicationData = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  // const updateSpots = (state, add = false) => {
-  //   // get the day you want to update
-  //   const dayObj = state.days.find((d) => d.name === state.day);
-  //   // we need to calculate spots better here
-  //   const spots = add ? dayObj.spots + 1 : dayObj.spots - 1
-
-  //   const countSpots = dayObj.appointments.forEach(id => {
-  //     if (id === state.appointments[id].id){
-  //       console.log(state.appointments[id].interview)
-  //     }
-  //   })
-
-  
-  //   const day = {...dayObj, spots}
-
-  //   // create a new days Array and replace the day with updatedDay
-  //   const days = state.days.map(d =>  d.name === state.day ? day : d);
-
-  //   return days;
-  // };
-
   const updateSpots = (state, appointments) => {
     // Get the day
     const dayObj = state.days.find((d) => d.name === state.day);
