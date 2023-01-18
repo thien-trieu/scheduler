@@ -3,7 +3,6 @@
 ## Project Desciption
 Interview Scheduler is a SPA (Single Page Application). The application is used to book student interviews. Components were built in isolation. The application uses React hooks and custom hooks to retrieve data from the API and render the data. The user is able to add, delete and edit their interviews. The visual state of the application with live update after each event.
 
--
 ## Setup
 
 Install dependencies with `npm install`.
