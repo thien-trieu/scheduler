@@ -27,25 +27,26 @@ npm test
 npm run storybook
 ```
 
+
+### Interview Scheduler - Book A New Interview
+!['Book A New Interview'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-BookInterview.PNG)
+
+### Interview Scheduler - Hover to get Edit / Delete Options
+!['Hover to get Edit / Delete Options'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-Hover-for-Edit-Delete.PNG)
+
+### Interview Scheduler - Validates Input
+!['Validates Input'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-Validation.PNG)
+
+### Interview Scheduler - Delete Confirmation
+!['Delete Confirmation'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-DeleteConfirmation.PNG)
+
+
 ## Project Stack
 - Front-End: React, Axios, JSX, HTML, SASS, JavaScript
 
 - Back-End: Express, Node.js, PostgreSQL
 
 - Testing: Storybook, Webpack Dev Server, Jest, Testing Library and Cypress
-
-### Interview Scheduler - Book A New Interview
-!['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-BookInterview.PNG)
-
-### Interview Scheduler - Hover to get Edit / Delete Options
-!['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-Hover-for-Edit-Delete.PNG)
-
-### Interview Scheduler - Validates Input
-!['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-Validation.PNG)
-
-### Interview Scheduler - Delete Confirmation
-!['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-DeleteConfirmation.PNG)
-
 
 ## Dependancies:
 - Axios
