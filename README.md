@@ -6,11 +6,16 @@ Interview Scheduler is a SPA (Single Page Application). The application is used 
 ### Interview Scheduler - Book A New Interview
 !['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-BookInterview.PNG)
 
+### Interview Scheduler - Hover to get Edit / Delete Options
+!['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-Hover-for-Edit-Delete.PNG)
+
 ### Interview Scheduler - Validates Input
 !['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-Validation.PNG)
 
 ### Interview Scheduler - Delete Confirmation
 !['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-DeleteConfirmation.PNG)
+
+
 
 ## Setup
 
