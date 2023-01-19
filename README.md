@@ -3,19 +3,7 @@
 ## Project Desciption
 Interview Scheduler is a SPA (Single Page Application). The application is used to book student interviews. Components were built in isolation. The application uses React hooks and custom hooks to retrieve data from the API and render the data. The user is able to add, edit or delete interviews. The visual state of the application will live update after each event.
 
-### Interview Scheduler - Book A New Interview
-!['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-BookInterview.PNG)
-
-### Interview Scheduler - Hover to get Edit / Delete Options
-!['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-Hover-for-Edit-Delete.PNG)
-
-### Interview Scheduler - Validates Input
-!['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-Validation.PNG)
-
-### Interview Scheduler - Delete Confirmation
-!['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-DeleteConfirmation.PNG)
-
-
+!['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler.PNG)
 
 ## Setup
 
@@ -45,6 +33,18 @@ npm run storybook
 - Back-End: Express, Node.js, PostgreSQL
 
 - Testing: Storybook, Webpack Dev Server, Jest, Testing Library and Cypress
+
+### Interview Scheduler - Book A New Interview
+!['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-BookInterview.PNG)
+
+### Interview Scheduler - Hover to get Edit / Delete Options
+!['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-Hover-for-Edit-Delete.PNG)
+
+### Interview Scheduler - Validates Input
+!['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-Validation.PNG)
+
+### Interview Scheduler - Delete Confirmation
+!['Interview Scheduler'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-DeleteConfirmation.PNG)
 
 
 ## Dependancies:
