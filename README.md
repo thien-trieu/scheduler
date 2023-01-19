@@ -27,6 +27,12 @@ npm test
 npm run storybook
 ```
 
+## Project Stack
+- Front-End: React, Axios, JSX, HTML, SASS, JavaScript
+
+- Back-End: Express, Node.js, PostgreSQL
+
+- Testing: Storybook, Webpack Dev Server, Jest, Testing Library and Cypress
 
 ### Interview Scheduler - Book A New Interview
 !['Book A New Interview'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-BookInterview.PNG)
@@ -40,13 +46,6 @@ npm run storybook
 ### Interview Scheduler - Delete Confirmation
 !['Delete Confirmation'](https://github.com/thien-trieu/scheduler/blob/master/docs/Interview-Scheduler-DeleteConfirmation.PNG)
 
-
-## Project Stack
-- Front-End: React, Axios, JSX, HTML, SASS, JavaScript
-
-- Back-End: Express, Node.js, PostgreSQL
-
-- Testing: Storybook, Webpack Dev Server, Jest, Testing Library and Cypress
 
 ## Dependancies:
 - Axios
