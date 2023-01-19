@@ -39,7 +39,15 @@ npm test
 npm run storybook
 ```
 
-Dependancies:
+## Project Stack
+- Front-End: React, Axios, JSX, HTML, SASS, JavaScript
+
+- Back-End: Express, Node.js, PostgreSQL
+
+- Testing: Storybook, Webpack Dev Server, Jest, Testing Library and Cypress
+
+
+## Dependancies:
 - Axios
 - Classnames
 - Normalize.css
